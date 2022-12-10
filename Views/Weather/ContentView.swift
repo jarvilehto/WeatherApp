@@ -154,7 +154,19 @@ struct ContentView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: 40.0, height: 40)
-                                        Text(String(format: "%.1f°C", data[i].temperature!))
+                                        switch selectedUnit{
+                                        case 1:
+                                            Text(String(format:"%.1f°F"
+                                                        , unitConvert.convertUnits(unit: data[i].temperature!
+                                                                                   , state:selectedUnit)))
+                                        case 2:
+                                            Text(String(format:"%.1fK"
+                                                        , unitConvert.convertUnits(unit: data[i].temperature!
+                                                                                   , state:selectedUnit)))
+                                        default:
+                                            Text(String(format: "%.1f°C", data[i].temperature!))
+                                        }
+                                        
                                     }
                                     .frame(width: 80.0, height: 150.0)
                                     .cornerRadius(10.0)
